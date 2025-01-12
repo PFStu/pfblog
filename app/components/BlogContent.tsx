@@ -40,7 +40,7 @@ export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) 
 
   return (
     <Head>
-      <link rel="icon" href="favicon.ico" />
+      <link rel="icon" href="favicon.png" />
     </Head>
     <div className="container mx-auto px-4">
       <div className="flex justify-between items-center mb-8 mt-8">
