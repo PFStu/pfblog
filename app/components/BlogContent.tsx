@@ -39,6 +39,7 @@ export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) 
   const allTags = Array.from(new Set(initialPosts.flatMap(post => post.tags)))
 
   return (
+    <>
     <Head>
       <link rel="icon" href="favicon.png" />
     </Head>
@@ -89,6 +90,7 @@ export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) 
         ))}
       </motion.div>
     </div>
+    </>
   )
 }
 
