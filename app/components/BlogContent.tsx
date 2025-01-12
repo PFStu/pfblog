@@ -8,8 +8,10 @@ import { ThemeToggle } from './ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import Head from 'next/head'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) {
+  const { language } = useLanguage()
   const [posts, setPosts] = useState<Post[]>(initialPosts)
   const [sortBy, setSortBy] = useState<'date' | 'title'>('date')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
@@ -45,19 +47,19 @@ export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) 
     </Head>
     <div className="container mx-auto px-4">
       <div className="flex justify-between items-center mb-8 mt-8">
-        <h1 className="text-4xl font-bold">PF 博客</h1>
+        <h1 className="text-4xl font-bold">{ language === 'zh' ? '博客' : 'Blog' }</h1>
         <ThemeToggle />
       </div>
       <div className="flex flex-wrap gap-4 mb-4">
         <SearchBar onTagSelect={setSelectedTag} />
         <Button onClick={() => setSortBy('date')} variant={sortBy === 'date' ? 'default' : 'outline'}>
-          按日期排序
+          { language === 'zh' ? '按日期排序' : 'Sort by date' }
         </Button>
         <Button onClick={() => setSortBy('title')} variant={sortBy === 'title' ? 'default' : 'outline'}>
-          按标题排序
+          { language === 'zh' ? '按标题排序' : 'Sort by title' }
         </Button>
         <Button onClick={toggleSortOrder}>
-          {sortOrder === 'asc' ? '升序' : '降序'}
+          {sortOrder === 'asc' ? '↑' : '↓'}
         </Button>
       </div>
       <div className="flex flex-wrap gap-2 mb-4">

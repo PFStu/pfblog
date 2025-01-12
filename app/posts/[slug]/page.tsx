@@ -31,9 +31,8 @@ const tagColors = {
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug)
-
   if (!post) {
-    return <div>文章未找到</div>
+    return <div>Post Not Found | 文章未找到</div>
   }
 
   return (
@@ -41,7 +40,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
       <Button asChild variant="ghost" className="mb-4">
         <Link href="/">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          返回
+          Back | 返回
         </Link>
       </Button>
       <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
@@ -57,7 +56,7 @@ export default async function PostPage({ params }: { params: { slug: string } })
         ))}
       </div>
       <div className="text-sm text-muted-foreground mb-4">
-        作者: {post.author} | 发布日期: {post.date} | 最后修改: {post.lastModified}
+        Author/作者: {post.author} | Published/发布日期: {post.date} | LastModified/最后修改: {post.lastModified}
       </div>
       <div className="prose lg:prose-xl dark:prose-invert max-w-none">
         <ReactMarkdown 

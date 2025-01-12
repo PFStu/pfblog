@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-
+const { Icon } = require("@iconify/tailwind");
 const config: Config = {
     darkMode: ["class"],
     content: [
@@ -91,6 +91,9 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+	require("tailwindcss-animate"),
+	Icon(),
+],
 };
 export default config;

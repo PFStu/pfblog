@@ -1,8 +1,10 @@
+'use client'
 import Link from 'next/link'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Post } from '@/types'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const tagColors = {
   light: [
@@ -26,6 +28,7 @@ const tagColors = {
 }
 
 export default function PostCard({ post }: { post: Post }) {
+  const { language } = useLanguage()
   return (
     <Card>
       <CardHeader>
@@ -45,13 +48,13 @@ export default function PostCard({ post }: { post: Post }) {
       <CardContent>
         <p>{post.excerpt}</p>
         <div className="text-sm text-muted-foreground mt-2">
-          作者: {post.author} | 发布日期: {post.date}
+          { language === 'zh' ? '作者' : 'Author' }: {post.author} | { language === 'zh' ? '发布时间' : 'Published' } : {post.date}
         </div>
       </CardContent>
       <CardFooter>
         <Button asChild>
           <Link href={`/posts/${post.slug}`}>
-            阅读更多
+            { language === 'zh' ? '阅读全文' : 'Read More' }
           </Link>
         </Button>
       </CardFooter>

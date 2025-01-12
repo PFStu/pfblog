@@ -10,8 +10,19 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) {
+      setTheme(savedTheme)
+    } else {
+      setTheme('light')
+    }
     setMounted(true)
-  }, [])
+  }, [setTheme])
+
+  const handleThemeChange = (newTheme: string) => {
+    setTheme(newTheme)
+    localStorage.setItem('theme', newTheme)
+  }
 
   if (!mounted) {
     return null
@@ -22,7 +33,7 @@ export function ThemeToggle() {
       <Button
         variant="outline"
         size="icon"
-        onClick={() => setTheme('light')}
+        onClick={() => handleThemeChange('light')}
         className={theme === 'light' ? 'bg-primary text-primary-foreground' : ''}
         title="浅色模式"
       >
@@ -31,7 +42,7 @@ export function ThemeToggle() {
       <Button
         variant="outline"
         size="icon"
-        onClick={() => setTheme('dark')}
+        onClick={() => handleThemeChange('dark')}
         className={theme === 'dark' ? 'bg-primary text-primary-foreground' : ''}
         title="深色模式"
       >
@@ -40,7 +51,7 @@ export function ThemeToggle() {
       <Button
         variant="outline"
         size="icon"
-        onClick={() => setTheme('sepia')}
+        onClick={() => handleThemeChange('sepia')}
         className={theme === 'sepia' ? 'bg-primary text-primary-foreground' : ''}
         title="护眼模式"
       >
@@ -49,4 +60,3 @@ export function ThemeToggle() {
     </div>
   )
 }
-
