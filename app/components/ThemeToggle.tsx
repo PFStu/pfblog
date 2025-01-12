@@ -10,18 +10,22 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme')
-    if (savedTheme) {
-      setTheme(savedTheme)
-    } else {
-      setTheme('light')
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme')
+      if (savedTheme) {
+        setTheme(savedTheme)
+      } else {
+        setTheme('light')
+      }
+      setMounted(true)
     }
-    setMounted(true)
   }, [setTheme])
 
   const handleThemeChange = (newTheme: string) => {
     setTheme(newTheme)
-    localStorage.setItem('theme', newTheme)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', newTheme)
+    }
   }
 
   if (!mounted) {
