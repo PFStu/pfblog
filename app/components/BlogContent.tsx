@@ -7,6 +7,7 @@ import SearchBar from './SearchBar'
 import { ThemeToggle } from './ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
+import Head from 'next/head'
 
 export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) {
   const [posts, setPosts] = useState<Post[]>(initialPosts)
@@ -38,6 +39,9 @@ export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) 
   const allTags = Array.from(new Set(initialPosts.flatMap(post => post.tags)))
 
   return (
+    <Head>
+      <link rel="icon" href="favicon.ico" />
+    </Head>
     <div className="container mx-auto px-4">
       <div className="flex justify-between items-center mb-8 mt-8">
         <h1 className="text-4xl font-bold">PF 博客</h1>
