@@ -7,7 +7,6 @@ import SearchBar from './SearchBar'
 import { ThemeToggle } from './ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
-import Head from 'next/head'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) {
@@ -40,11 +39,7 @@ export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) 
 
   const allTags = Array.from(new Set(initialPosts.flatMap(post => post.tags)))
 
-  return (
-    <>
-    <Head>
-      <link rel="icon" href="https://www.pfstu.ct.ws/favicon.png" />
-    </Head>
+  return(
     <div className="container mx-auto px-4">
       <div className="flex justify-between items-center mb-8 mt-8">
         <h1 className="text-4xl font-bold">{ language === 'zh' ? '博客' : 'Blog' }</h1>
@@ -92,7 +87,6 @@ export default function BlogContent({ initialPosts }: { initialPosts: Post[] }) 
         ))}
       </motion.div>
     </div>
-    </>
   )
 }
 
